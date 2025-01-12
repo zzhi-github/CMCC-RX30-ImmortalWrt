@@ -7,6 +7,7 @@ Step 1. 开启SSH
 
 Step2. 刷uboot
 先看了一下原机的分区：
+```
 root@XR30:~# fdisk -l /dev/mmcblk0
 Found valid GPT with protective MBR; using GPT
 
@@ -29,10 +30,11 @@ Number  Start (sector)    End (sector)  Size Name
     10         1065984         1098751 16.0M fwk
     11         1098752         1131519 16.0M fwk2
     12         1131520       120800000 57.0G data
-
+```
 教程里面用的是RAX3000M，跟上面的内容完全相同。
 有两个rootfs，即双分区，大小都是64M。刷机固件要小于64M才行，除非重新分区。
 下面是df -h和blkid的结果，跟RAX3000M的也完全一样。
+```
 root@XR30:~# df -h
 Filesystem                Size      Used Available Use% Mounted on
 /dev/root                14.0M     14.0M         0 100% /rom
@@ -61,6 +63,7 @@ root@XR30:~# blkid
 /dev/mmcblk0p10: TYPE="squashfs" PARTLABEL="fwk" PARTUUID="6e2bd585-7b0b-45b5-a8a1-4cf5436b1f73"
 /dev/mmcblk0p11: TYPE="squashfs" PARTLABEL="fwk2" PARTUUID="fd8708ae-59c7-4ed5-a467-54bfe357cb48"
 /dev/mmcblk0p12: LABEL="extend" UUID="dc03ebd1-f73a-4dda-96a3-6ff534229bc9" BLOCK_SIZE="4096" TYPE="ext4" PARTLABEL="data" PARTUUID="3c058515-54c3-452f-9b87-7a4f957b5cd1"
+```
 Step 2.1 备份原厂分区
 前面11个分区，即1 - 11的全部备份。
 bl2 在/dev/mmcblk0boot0, uboot在fip分区
