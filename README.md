@@ -68,3 +68,15 @@ Step 2.1 备份原厂分区
 前面11个分区，即1 - 11的全部备份。
 bl2 在/dev/mmcblk0boot0, uboot在fip分区
 根据教程，把备份都存入最后一个分区mmcblk0p12,即最大的一个分区。
+
+Step 2.2 开始刷uboot
+把fip bin file用scp上传到路由器/tmp目录
+用dd命令刷如新的uboot，然后用md5sum验证结果，没问题就可以重启机器进入uboot。
+
+Step 3 刷入immortalWrt固件 （18M）
+进入uboot，按住reset，路由器上电，大约10s后，指示灯变色（我的是红色变为白色），松开reset，uboot启动结束。
+电脑IP设置为192.168.1.x，netmask：255.255.255.0，gateway：192.168.1.1，DNS：
+浏览器打开IP：192.168.1.1 uboot图形界面，选择rx30固件，upload，固件刷入成功后机器自动重启。
+再次打开192.168.1.1进入immortWrt图形界面，进行设备配置。
+
+暂时没有需要更改gpt分区，稍后看有需求再动。
