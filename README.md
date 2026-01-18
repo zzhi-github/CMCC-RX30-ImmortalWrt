@@ -1,7 +1,9 @@
 # CMCC-RX30-ImmortalWrt
 Tutorial of CCMCC RX30/RAX3000Z增强版 immortalWrt
 2025.1.10 闲鱼上收了一台CMCC型号RX30的路由器，外包装上打印的名称为：RAX3000Z增强版，生产日期为20240106，生产企业：无锡盟创网络科技
-再网上搜了几天，很多相关的刷机教程，有点乱；最后还是看到github上的一篇教程比较靠谱：https://github.com/lgs2007m/Actions-OpenWrt/blob/main/Tutorial/RAX3000M-eMMC_XR30-eMMC.md。下面是按照教程的刷机过程，记录一下。
+再网上搜了几天，很多相关的刷机教程，有点乱；最后还是看到github上的一篇教程比较靠谱: [GithHub/lgs2007m](https://github.com/lgs2007m/Actions-OpenWrt/blob/main/Tutorial/RAX3000M-eMMC_XR30-eMMC.md)。
+
+下面是按照教程的刷机过程，记录一下。
 Step 1. 开启SSH
 这一步比较简单，因为路由器的conf file没有加密，可以直接download conf file，然后修改相应的两个文件，上传新的conf file后就能ssh root登录192.168.10.1.
 
@@ -71,7 +73,7 @@ bl2 在/dev/mmcblk0boot0, uboot在fip分区
 
 Step 2.2 开始刷uboot
 把fip bin file用scp上传到路由器/tmp目录
-用dd命令刷如新的uboot，然后用md5sum验证结果，没问题就可以重启机器进入uboot。
+用dd命令刷入新的uboot，然后用md5sum验证结果，没问题就可以重启机器进入uboot。
 
 Step 3 刷入immortalWrt固件 （18M）
 进入uboot，按住reset，路由器上电，大约10s后，指示灯变色（我的是红色变为白色），松开reset，uboot启动结束。
